@@ -55,6 +55,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -
         ca-certificates \
         sudo \
         locales locales-all \
+        xvfb \
     && apt-get clean \
     && apt-get -y autoremove \
     && rm -rf /var/lib/apt/lists/*
@@ -77,6 +78,13 @@ USER $NB_USER
 # Install the Matlab Kernel
 RUN python -m pip install matlab_kernel
 
+# Also install the proxy kernel that just integrates a Matlab GUI into JupyterLab
+RUN python -m pip install https://github.com/mathworks/jupyter-matlab-proxy/archive/refs/tags/v0.2.0.tar.gz
+RUN jupyter labextension install @jupyterlab/server-proxy
+
 # Set the correct license server
 ARG LICENSE_SERVER
 ENV MLM_LICENSE_FILE $LICENSE_SERVER
+
+# We enable JupyterLab for this as it better shows the proxy kernel
+ENV JUPYTER_ENABLE_LAB=yes

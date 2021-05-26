@@ -29,7 +29,7 @@ export MATLAB_ISOFILE=<path/to/isofile>
 export MATLAB_LICENSE_KEY=<key>
 export MATLAB_LICENSE_SERVER=<port>@<IP>
 
-sudo -E ./build-image.sh matlab-jupyter:latest
+sudo -E ./build.sh matlab-jupyter:latest
 ```
 
 In the above, the resulting image will be tagged `matlab-jupyter:latest` - change as needed.
