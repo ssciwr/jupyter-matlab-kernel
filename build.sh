@@ -17,5 +17,5 @@ rm matlab_installer_input.txt
 popd
 
 # Build the final Docker image
-docker build -t $1 --build-arg baseimage=tmp-$1 .
+docker build -t $1 --build-arg baseimage=tmp-$1 --build-arg LICENSE_SERVER=$MATLAB_LICENSE_SERVER .
 docker rmi -f tmp-$1
