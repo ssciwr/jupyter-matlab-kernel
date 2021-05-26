@@ -1,0 +1,3 @@
+[submodule "matlab-dockerfile"]
+	path = matlab-dockerfile
+	url = git@github.com:mathworks-ref-arch/matlab-dockerfile.git
