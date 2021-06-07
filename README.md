@@ -1,6 +1,8 @@
 # Jupyter Image setup with Matlab Kernel
 
 Documentation of a Docker setup to build and deploy a Jupyter kernel for Matlab.
+It contains both a Jupyter kernel that runs in the notebook as well as a proxy
+kernel that opens the Matlab Web GUI from within JupyterLab.
 
 ## Prerequisites
 
@@ -12,9 +14,9 @@ You need the following tools installed:
 
 You should obtain the following files/pieces of information from your institution or your MathWorks account:
 
-* Obtain the Matlab Installer ISO file
+* The Matlab Installer ISO file. Tested version: `R2021a`
 * Find out IP and port of your license server
-* Obtain your license key
+* Your license key
 
 ## Building the Image
 
@@ -33,6 +35,7 @@ sudo -E ./build.sh matlab-jupyter:latest
 ```
 
 In the above, the resulting image will be tagged `matlab-jupyter:latest` - change as needed.
+For the SSC JupyterHub instance, you should tag the image `ssc-jupyter.iwr.uni-heidelberg.de:5000/matlab-jupyter:latest`.
 Be patient, building this takes a while.
 
 ## Using the Image
@@ -46,3 +49,10 @@ docker run -t -p 8888:8888 matlab-jupyter:latest
 ## Deploying the Image
 
 Do not publicly deploy the built image to avoid leaking licensing information!
+Deploying to a private registry, e.g. `ssc-jupyter.iwr.uni-heidelberg.de:5000` is done with:
+
+```
+docker login ssc-jupyter.iwr.uni-heidelberg.de:5000
+docker push ssc-jupyter.iwr.uni-heidelberg.de:5000/matlab-jupyter:latest
+docker logout
+```
