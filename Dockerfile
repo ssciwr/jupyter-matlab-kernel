@@ -61,12 +61,12 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -
     && rm -rf /var/lib/apt/lists/*
 
 # Copy MATLAB install from supplied Docker image
-RUN ln -s /usr/local/MATLAB/bin/matlab /usr/local/bin/matlab
-COPY --from=matlab-install-stage /usr/local/MATLAB /usr/local/MATLAB
+RUN ln -s /opt/matlab/bin/matlab /usr/local/bin/matlab
+COPY --from=matlab-install-stage /opt/matlab /usr/local/MATLAB
 USER $NB_USER
 
-# Downgrade Python to 3.8 - the MatLab for Python API requires this
-RUN conda install -c conda-forge python=3.8 && \
+# Downgrade Python to 3.10 - the MatLab for Python API requires this
+RUN conda install -c conda-forge python=3.10 && \
     conda clean -a
 
 # Install the Matlab for Python API
