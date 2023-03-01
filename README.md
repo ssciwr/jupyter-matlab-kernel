@@ -14,9 +14,11 @@ You need the following tools installed:
 
 You should obtain the following files/pieces of information from your institution or your MathWorks account:
 
-* The Matlab Installer ISO file. Tested version: `R2021a`
+* The Matlab Installer ISO file. Tested version: `R2022b`
 * Find out IP and port of your license server
 * Your license key
+
+You get those from Markus.
 
 ## Building the Image
 
@@ -25,6 +27,8 @@ you would like to include into your image. Enabling all products results in an e
 Docker image.
 
 To build the image, please do the following:
+
+First get a current version of https://github.com/mathworks-ref-arch/matlab-dockerfile, then 
 
 ```
 export MATLAB_ISOFILE=<path/to/isofile>
